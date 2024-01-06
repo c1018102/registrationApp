@@ -11,6 +11,4 @@ def modules(request):
     return render(request, 'moduleregistrationsystem/modules.html', {'title': 'Modules'})
 
 
-
-
 # Create your views here.
