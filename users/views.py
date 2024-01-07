@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm
+from django.contrib.auth import logout
+from django.http import HttpResponseNotAllowed, HttpResponse
 
 def register(request):
     if request.method == 'POST':
@@ -12,7 +14,19 @@ def register(request):
             return redirect('login')
         else:
             messages.warning(request, 'Unable to create account!')
-        return redirect('itreporting:home')
+        return redirect('moduleregistrationsystem:home')
     else:
         form = UserRegisterForm()
         return render(request, 'users/register.html', {'form': form , 'title': 'Student Registration'})
+    
+from django.contrib.auth import logout
+from django.http import HttpResponseNotAllowed
+
+def logout_view(request):
+    if request.method == 'POST':
+        logout(request)
+    else:
+        return HttpResponseNotAllowed(['POST'])
+def handle_logout(request):
+    return HttpResponse("Method Not Allowed", status=405)
+
