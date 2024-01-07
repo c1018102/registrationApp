@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth import logout
 from django.http import HttpResponseNotAllowed, HttpResponse
 from django.contrib.auth.decorators import login_required
+from .models import Profile
 
 
 def register(request):
@@ -32,7 +33,26 @@ def logout_view(request):
 def handle_logout(request):
     return HttpResponse("Method Not Allowed", status=405)
 
-@login_required
+login_required
 def profile(request):
-    return render(request, 'users/profile.html', {'title': 'Profile'})
+    try:
+        profile = request.user.profile
+    except Profile.DoesNotExist:
+        # Profile doesn't exist, create it
+        Profile.objects.create(user=request.user)
+        profile = request.user.profile
 
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=profile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, 'Your profile has been successfully updated')
+            return redirect('profile')
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=profile)
+
+    context = {'u_form': u_form, 'p_form': p_form, 'title': 'Profile'}
+    return render(request, 'users/profile.html', context)
