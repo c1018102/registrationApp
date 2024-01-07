@@ -3,6 +3,8 @@ from django.contrib import messages
 from .forms import UserRegisterForm
 from django.contrib.auth import logout
 from django.http import HttpResponseNotAllowed, HttpResponse
+from django.contrib.auth.decorators import login_required
+
 
 def register(request):
     if request.method == 'POST':
@@ -29,4 +31,8 @@ def logout_view(request):
         return HttpResponseNotAllowed(['POST'])
 def handle_logout(request):
     return HttpResponse("Method Not Allowed", status=405)
+
+@login_required
+def profile(request):
+    return render(request, 'users/profile.html', {'title': 'Profile'})
 
