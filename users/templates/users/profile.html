@@ -1,4 +1,16 @@
 {% extends "moduleregistrationsystem/base.html" %}
+{% load static %}
 {% block content %}
-<h1>{{ user.username }}</h1>
+<div class="content-section">
+    <div class="media">
+        <p>
+            <img class="rounded-circle account-img" src="{{ MEDIA_URL }}media/profile_pics/default.png" alt="Profile Picture">
+        </p>
+        <div class="media-body">
+            <h2 class="account-heading">{{ user.profile }}</h2>
+            <p class="text-secondary">{{ user.username }}</p>
+            <p class="text-secondary">{{ user.email }}</p>
+        </div>
+    </div>
+</div>
 {% endblock content %}
