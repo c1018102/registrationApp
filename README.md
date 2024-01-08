@@ -9,9 +9,8 @@ Student Account:
 Username: jessB
 Password: Pass0602@
 
-VM LOGIN:
-Username: C1018102@hallam.shu.ac.uk
-Password: Assignment2023!
+VM LOGIN/VSC Keyring:
+Password: H4ll4mL4bsUser!
 
 Files located at: /home/student/registrationApp/
 
