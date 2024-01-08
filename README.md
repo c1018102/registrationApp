@@ -1,6 +1,9 @@
 # registrationApp
 Assignment - Cloud Based Systems
 
+VM PASSWORD: H4ll4mL4bsUser!
+VSC Keychain: H4ll4mL4bsUser!
+
 Superadmin Login/Database Login:
 Username: adamF
 Password: qwerty123
@@ -8,10 +11,6 @@ Password: qwerty123
 Student Account:
 Username: jessB
 Password: Pass0602@
-
-VM LOGIN:
-Username: C1018102@hallam.shu.ac.uk
-Password: Assignment2023!
 
 Files located at: /home/student/registrationApp/
 
