@@ -1,0 +1,17 @@
+{% extends 'moduleregistrationsystem/base.html' %}
+
+{% block content %}
+  <h1>Module Selections</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Submit</button>
+  </form>
+
+  {# Display any form errors here #}
+  {% if form.errors %}
+    <p style="color: red;">{{ form.errors }}</p>
+  {% endif %}
+{% endblock %}

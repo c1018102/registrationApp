@@ -24,13 +24,19 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['date_of_birth', 'address', 'city_town', 'country', 'image']
+        fields = ['date_of_birth', 'address', 'city_town', 'country', 'image', 'course', 'module_Selection_1_ID_Number', 'module_Selection_2_ID_Number']
+        widgets = {
+            'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
+        }
 
     def __init__(self, *args, **kwargs):
         super(ProfileUpdateForm, self).__init__(*args, **kwargs)
         
         # Add required attribute to specific fields
-        self.fields['date_of_birth'].required = True
+        self.fields['date_of_birth'].required = True,
         self.fields['address'].required = True
         self.fields['city_town'].required = True
         self.fields['country'].required = True
+        self.fields['course'].required = False
+        self.fields['module_Selection_1_ID_Number'].required = False
+        self.fields['module_Selection_2_ID_Number'].required = False

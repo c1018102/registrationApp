@@ -1,29 +1,28 @@
 {% extends 'moduleregistrationsystem/base.html' %}
-{% load static %}  <!-- Add this line at the top of your template -->
-
-<!-- In your base.html or HTML template -->
-<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
 {% block content %}
   <h1>{{ title }}</h1>
-  <h1>{{ module.name }}</h1>
+  <h2>Please go to your profile to make your module choices - All you need is the module ID</h2>
+  <h3>Please see below for the avaliable modules:</h3>
 
   {% if modules %}
     <table class="styled-table">
       <thead>
         <tr>
-          <th>  Name    </th>
-          <th>  Code    </th>
-          <th>  Credit  </th>
-          <th>  Category    </th>
-          <th>  Description </th>
-          <th>  Availability    </th>
-          <th>  Course    </th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Code</th>
+          <th>Credit</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Availability</th>
+          <th>Courses Allowed</th>
         </tr>
       </thead>
       <tbody>
         {% for module in modules %}
           <tr>
+            <td>Module Object ({{ module.id }})</td>
             <td>{{ module.name }}</td>
             <td>{{ module.code }}</td>
             <td>{{ module.credit }}</td>
@@ -39,23 +38,7 @@
     <p>No modules available.</p>
   {% endif %}
 
-  <h1>{{ title }}</h1>
+  
 
-  <form method="post" action="{% url 'moduleregistrationsystem:modules' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save Module Selection</button>
-  </form>
-
-  <h2>Your Selected Modules</h2>
-{% if user_modules %}
-  <ul>
-    {% for user_module in user_modules %}
-      <li>{{ user_module.name }}</li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>No modules selected.</p>
-{% endif %}
 
 {% endblock %}
