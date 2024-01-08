@@ -15,6 +15,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+WEBSITE_HOSTNAME = os.environ['WEBSITE_HOSTNAME']
 
 
 # Quick-start development settings - unsuitable for production
@@ -24,10 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = WEBSITE_HOSTNAME is None
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [WEBSITE_HOSTNAME] if DEBUG else ()
 
+if not DEBUG:
+    CSRF_TRUSTED_ORIGINS = [f'https://{WEBSITE_HOSTNAME}']
 
 # Application definition
 
