@@ -27,10 +27,10 @@
                     <div class="navbar-nav mr-auto">
                         <a class="nav-item nav-link" href="{% url 'moduleregistrationsystem:home' %}">Home</a>
                         <a class="nav-item nav-link" href="{% url 'moduleregistrationsystem:aboutus' %}">About Us</a>
-                        <a class="nav-item nav-link" href="{% url 'moduleregistrationsystem:modules' %}">Avaliable Modules</a>
+                        <a class="nav-item nav-link" href="{% url 'moduleregistrationsystem:modules' %}">Available Modules</a>
                         <a class="nav-item nav-link" href="{% url 'moduleregistrationsystem:contactus' %}">Contact Us</a>
                     </div>
-                    <!-- Navbar Right Side -->
+                  <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                         {% if user.is_authenticated %}
                             <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
